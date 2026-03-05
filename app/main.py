@@ -178,7 +178,7 @@ def fmt_ts(ts: int) -> str:
     try:
         return time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(int(ts)))
     except Exception:
-        return str(ts)
+        pass str(ts)
 
 
 
@@ -947,7 +947,7 @@ def db_ok() -> bool:
             conn.execute(_text("SELECT 1"))
         return True
     except Exception:
-        return False
+        pass False
 
 
 logger = logging.getLogger("orkio")
