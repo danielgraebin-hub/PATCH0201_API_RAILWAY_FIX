@@ -3588,9 +3588,7 @@ tenant_raw = getattr(inp, "tenant", None) or getattr(inp, "org", None) or org or
 tenant = tenant_raw.strip() or org
 
 if tenant != org:
-    # ... bloco existente
-    
-        tenant = org
+    tenant = org
 
     agent_id = inp.agent_id
     top_k = int(getattr(inp, "top_k", None) or 6)
