@@ -3584,12 +3584,16 @@ async def chat_stream(
     if not message:
         raise HTTPException(400, "message required")
 
-tenant = (getattr(inp, "tenant", None) or getattr(inp, "org", None) or org or "").strip() or org    if tenant != org:
-        # Guard: tenant from payload must not override JWT tenant
+tenant_raw = getattr(inp, "tenant", None) or getattr(inp, "org", None) or org or ""
+tenant = tenant_raw.strip() or org
+
+if tenant != org:
+    # ... bloco existente
+    
         tenant = org
 
     agent_id = inp.agent_id
-    top_k = int(inp.top_k or 6)
+    top_k = int(getattr(inp, "top_k", None) or 6)
     trace_id = getattr(inp, "trace_id", None) or new_id()
     client_message_id = getattr(inp, "client_message_id", None)
 
